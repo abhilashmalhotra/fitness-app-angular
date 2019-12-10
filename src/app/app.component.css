@@ -1,7 +1,11 @@
 mat-drawer-container{
     height: 100%;
+    background: #f3f3f3;
 }
 
 mat-drawer{
     width: 200px;
+}
+.app-container{
+    padding: 15px 30px;
 }
