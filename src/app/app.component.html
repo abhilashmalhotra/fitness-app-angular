@@ -1,6 +1,6 @@
 <mat-drawer-container>
   <mat-drawer #sideNav>
-    <app-side-nav></app-side-nav>
+    <app-side-nav (closeSideNav)="sideNav.close()"></app-side-nav>
   </mat-drawer>
   <mat-drawer-content>
     <app-header (sideNavToggle)="toggleNavigation()"></app-header>
