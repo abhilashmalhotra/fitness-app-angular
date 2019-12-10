@@ -1,17 +1,8 @@
 <mat-drawer-container>
-  <mat-drawer #sideNav>
-    Drawer content
+  <mat-drawer #sideNav opened>
+    <app-side-nav></app-side-nav>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar color="primary">
-      <div>
-        <button mat-button (click)="sideNav.toggle()">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
-        </button>
-      </div>
-      <div>
-        <span>Fitness App</span>
-      </div>
-    </mat-toolbar>
+    <app-header (sideNavToggle)="toggleNavigation()"></app-header>
   </mat-drawer-content>
 </mat-drawer-container>
