@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-tab-group>
+    <mat-tab-group *ngIf="!excerciseActive">
         <mat-tab label="New Training">
             <app-new-training></app-new-training>
         </mat-tab>
@@ -8,8 +8,9 @@
         </mat-tab>
     </mat-tab-group>
     <!-- Processing Training Here -->
-    <div class="processing-training">
-        <mat-spinner></mat-spinner>
-        <button type="button" mat-raised-button color="accent">Stop</button>
+    <div class="processing-training" *ngIf="excerciseActive">
+        <mat-progress-spinner [mode]="mode" [value]="value"></mat-progress-spinner>
+        <p>You have completed {{ value }}%</p>
+        <button type="button" mat-raised-button color="accent" (click)="stopExcercise()">Stop</button>
     </div>
 </mat-card>

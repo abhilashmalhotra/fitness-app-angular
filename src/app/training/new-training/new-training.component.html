@@ -1,17 +1,14 @@
 <div class="training-container">
     <h4 class="title">Let's start the training</h4>
-    <form style="text-align:center">
+    <form style="text-align:center" (ngSubmit)="startExcercise(f)" #f="ngForm">
         <mat-form-field>
-            <mat-label>Favorite food</mat-label>
-            <mat-select>
-                <mat-option value="Bycepss">Bycepss</mat-option>
-                <mat-option value="Crunchees">Crunchees</mat-option>
-
-                <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
-                </mat-option> -->
+            <mat-label>Select Excercise</mat-label>
+            <mat-select required ngModel name="excercise">
+                <mat-option *ngFor="let excercise of excercises" [value]="excercise.id">
+                    {{excercise.name}}
+                </mat-option>
             </mat-select>
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary">Start</button>
+        <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Start</button>
     </form>
 </div>
