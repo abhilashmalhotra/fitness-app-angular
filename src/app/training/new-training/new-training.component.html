@@ -1,1 +1,17 @@
-<p>new-training works!</p>
+<div class="training-container">
+    <h4 class="title">Let's start the training</h4>
+    <form style="text-align:center">
+        <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <mat-select>
+                <mat-option value="Bycepss">Bycepss</mat-option>
+                <mat-option value="Crunchees">Crunchees</mat-option>
+
+                <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                </mat-option> -->
+            </mat-select>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Start</button>
+    </form>
+</div>

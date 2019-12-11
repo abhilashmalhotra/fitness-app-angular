@@ -1,1 +1,15 @@
-<p>training works!</p>
+<mat-card>
+    <mat-tab-group>
+        <mat-tab label="New Training">
+            <app-new-training></app-new-training>
+        </mat-tab>
+        <mat-tab label="Past Training">
+            <app-past-training></app-past-training>
+        </mat-tab>
+    </mat-tab-group>
+    <!-- Processing Training Here -->
+    <div class="processing-training">
+        <mat-spinner></mat-spinner>
+        <button type="button" mat-raised-button color="accent">Stop</button>
+    </div>
+</mat-card>
