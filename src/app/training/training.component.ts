@@ -1,6 +1,8 @@
-import { TrainingService } from './training.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { TrainingService } from './training.service';
+import { TrainingConfirmComponent } from './../modals/training-confirm/training-confirm.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-training',
@@ -14,15 +16,17 @@ export class TrainingComponent implements OnInit, OnDestroy {
   timer;
   excerciseActive;
   excerciseSub: Subscription;
+  selectedTab = 0;
   currrentExcercise;
-  constructor(private trainingService: TrainingService) { }
+  constructor(private trainingService: TrainingService, private dialog: MatDialog) { }
+  
 
   ngOnInit() {
     // 
     this.excerciseSub = this.trainingService.currentExcercise.subscribe(excercise =>{
       this.excerciseActive = (excercise != '') ? true: false;
       this.currrentExcercise = excercise;
-      console.log(excercise)
+      // console.log(excercise)
       this.startOrResumeTraining();
     })
   }
@@ -39,7 +43,17 @@ export class TrainingComponent implements OnInit, OnDestroy {
 
 
   stopExcercise() {
-    clearInterval(this.timer)
+    clearInterval(this.timer);
+    // add data to components modal
+    const dialogRef = this.dialog.open(TrainingConfirmComponent, {
+      data: { name:  this.currrentExcercise.name},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedTab = 1;
+      this.excerciseActive = !this.excerciseActive;      
+      this.trainingService.addExcercise({...this.currrentExcercise, completed: this.value});
+      this.value = 0;
+    });
   }
 
   ngOnDestroy(){

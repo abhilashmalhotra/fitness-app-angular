@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 
 export class TrainingService {
     currentExcercise = new Subject();
+    excerciseUpdated = new Subject();
     private runningExcercise;
     private availableExcercise = [
         { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 },
@@ -12,6 +13,7 @@ export class TrainingService {
         { id: 'crunches', name: 'Curunches', duration: 30, calories: 8 },
         { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 30 }
     ];
+    private completedExcercise = [];
 
     getAvailableExcercise() {
         return this.availableExcercise.slice()
@@ -19,10 +21,23 @@ export class TrainingService {
     getStartedExcercise(excercise) {
         this.runningExcercise = this.availableExcercise.find(el => el.id == excercise)
         this.currentExcercise.next({ ...this.runningExcercise });
-        console.log(this.runningExcercise)
     }
 
     getRunningExcercise() {
         return { ...this.runningExcercise }
+    }
+
+    addExcercise(excercise) {
+        this.completedExcercise.unshift(excercise);
+        this.excerciseUpdated.next(excercise);
+        sessionStorage.setItem('excercise', JSON.stringify(this.completedExcercise));
+    }
+
+    getCompletedExcercise() {
+        const ssnExcercise = sessionStorage.getItem('excercise');
+        if(ssnExcercise && ssnExcercise != null && ssnExcercise != '') {
+            this.completedExcercise = JSON.parse(ssnExcercise);
+            return this.completedExcercise.slice();
+        } 
     }
 }

@@ -14,6 +14,7 @@ import { TrainingComponent } from './training/training.component';
 import { CurrentTrainingComponent } from './training/current-training/current-training.component';
 import { NewTrainingComponent } from './training/new-training/new-training.component';
 import { PastTrainingComponent } from './training/past-training/past-training.component';
+import { TrainingConfirmComponent } from './modals/training-confirm/training-confirm.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PastTrainingComponent } from './training/past-training/past-training.co
     TrainingComponent,
     CurrentTrainingComponent,
     NewTrainingComponent,
-    PastTrainingComponent
+    PastTrainingComponent,
+    TrainingConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { PastTrainingComponent } from './training/past-training/past-training.co
     FormsModule
   ],
   providers: [],
+  entryComponents: [TrainingConfirmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
